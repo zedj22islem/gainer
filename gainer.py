@@ -5,10 +5,16 @@ import time
 from datetime import datetime
 import telegram
 import winsound
+import os
 
 BINANCE_WS_URL = "wss://stream.binance.com:9443/ws/!ticker@arr"
-TELEGRAM_BOT_TOKEN = "your_bot_token_here"
-TELEGRAM_CHAT_ID = "your_chat_id_here"
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")  # Fetch from environment
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+if not TELEGRAM_BOT_TOKEN:
+    raise ValueError("TELEGRAM_BOT_TOKEN environment variable is not set")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+if not TELEGRAM_CHAT_ID:
+    raise ValueError("TELEGRAM_CHAT_ID environment variable is not set")
 
 MIN_VOLUME = 1800000
 VOLUME_SURGE = 1.2
